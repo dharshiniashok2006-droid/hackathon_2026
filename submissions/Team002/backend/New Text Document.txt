@@ -1,0 +1,25 @@
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+import pickle
+
+data = {
+    "attendance": [60, 70, 80, 90, 75, 85, 50, 65],
+    "internal": [55, 65, 75, 85, 70, 80, 45, 60],
+    "assignment": [50, 60, 70, 90, 65, 75, 40, 55],
+    "study_hours": [2, 3, 4, 6, 3, 5, 1, 2],
+    "final_marks": [55, 65, 75, 92, 70, 85, 48, 60]
+}
+
+df = pd.DataFrame(data)
+
+X = df[["attendance", "internal", "assignment", "study_hours"]]
+y = df["final_marks"]
+
+model = LinearRegression()
+model.fit(X, y)
+
+
+pickle.dump(model, open("model.pkl", "wb"))
+
+print("Model trained and saved successfully!")

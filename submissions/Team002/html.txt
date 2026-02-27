@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Performance Prediction</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 40px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            margin: auto;
+        }
+        input {
+            margin: 10px;
+            padding: 8px;
+            width: 90%;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        h2 { color: #333; }
+        h3 { color: #444; }
+    </style>
+</head>
+<body>
+
+<h2> Student Performance Prediction</h2>
+
+<form id="predictionForm">
+    <input type="number" id="attendance" placeholder="Attendance %" required>
+    <input type="number" id="internal" placeholder="Internal Marks" required>
+    <input type="number" id="assignment" placeholder="Assignment Score" required>
+    <input type="number" id="study_hours" placeholder="Study Hours / Day" required>
+    <button type="submit">Predict</button>
+</form>
+
+<h3 id="resultMarks"></h3>
+<h3 id="resultStatus"></h3>
+
+<script>
+document.getElementById("predictionForm").addEventListener("submit", function(e){
+    e.preventDefault(); 
+
+    
+    let attendance = parseFloat(document.getElementById("attendance").value);
+    let internal = parseFloat(document.getElementById("internal").value);
+    let assignment = parseFloat(document.getElementById("assignment").value);
+    let study_hours = parseFloat(document.getElementById("study_hours").value);
+
+    
+    let prediction = attendance*0.2 + internal*0.3 + assignment*0.2 + study_hours*3;
+
+    
+    let status = prediction >= 50 ? "PASS " : "FAIL ";
+
+
+    document.getElementById("resultMarks").innerText = "Predicted Marks: " + prediction.toFixed(2);
+    document.getElementById("resultStatus").innerText = "Status: " + status;
+});
+</script>
+
+</body>
+</html>
